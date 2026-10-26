@@ -15,7 +15,7 @@ window.PLAYOFF_DATA = {
       "score": null,
       "note": "대구 · 10/25 우천 취소로 26일 18:30 순연",
       "myPick": "kia",
-      "myScore": null
+      "myScore": { "samsung": 3, "kia": 5 }
     }
   ]
 };
