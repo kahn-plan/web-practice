@@ -101,8 +101,9 @@
       spSamsung: o.spSamsung || l.spSamsung || '',
       spKia: o.spKia || l.spKia || '',
       score: o.score || l.score || null,
-      myPick: l.myPick || '',
-      myScore: l.myScore || null,
+      // 이 브라우저에서 입력한 예측이 있으면 그것을, 없으면 data/games.js 에 적어 둔 예측을 씁니다.
+      myPick: l.myPick || o.myPick || '',
+      myScore: l.myScore || o.myScore || null,
       memo: l.memo || '',
       official: o,
     };

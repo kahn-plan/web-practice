@@ -26,8 +26,10 @@ test('data/games.js 는 window.PLAYOFF_DATA = <JSON>; 형태다', () => {
     assert.ok(TEAMS.includes(g.home), where + ': home');
     assert.equal(typeof g.spSamsung, 'string', where + ': spSamsung');
     assert.equal(typeof g.spKia, 'string', where + ': spKia');
-    if (g.score !== null) {
-      for (const t of TEAMS) assert.ok(Number.isInteger(g.score[t]) && g.score[t] >= 0, where + ': score.' + t);
+    for (const key of ['score', 'myScore']) {
+      if (g[key] == null) continue;
+      for (const t of TEAMS) assert.ok(Number.isInteger(g[key][t]) && g[key][t] >= 0, `${where}: ${key}.${t}`);
     }
+    if (g.myPick !== undefined) assert.ok(['', ...TEAMS].includes(g.myPick), where + ': myPick');
   }
 });
