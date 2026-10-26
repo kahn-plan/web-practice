@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>삼성 vs KIA 플레이오프 예측</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <p class="eyebrow">2026 KBO 플레이오프</p>
+    <h1><span class="t-samsung">삼성</span> <span class="vs">vs</span> <span class="t-kia">KIA</span></h1>
+    <div class="series" id="series"></div>
+    <p class="muted" id="seriesNote"></p>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="card-head">
+        <h2>다음 경기 예측</h2>
+        <label class="inline">홈팀
+          <select id="nextHome">
+            <option value="samsung">삼성</option>
+            <option value="kia">KIA</option>
+          </select>
+        </label>
+      </div>
+      <div id="next"></div>
+    </section>
+
+    <section class="card" id="formCard">
+      <h2 id="formTitle">경기 기록 추가</h2>
+      <form id="gameForm" autocomplete="off">
+        <div class="grid">
+          <label>경기<input name="no" type="number" min="1" max="15" required><span class="suffix">차전</span></label>
+          <label>날짜<input name="date" type="date"></label>
+          <label>홈팀
+            <select name="home">
+              <option value="samsung">삼성</option>
+              <option value="kia">KIA</option>
+            </select>
+          </label>
+          <label>삼성 선발<input name="spSamsung" maxlength="20" placeholder="선발 투수"></label>
+          <label>KIA 선발<input name="spKia" maxlength="20" placeholder="선발 투수"></label>
+        </div>
+
+        <fieldset>
+          <legend>내 예측</legend>
+          <div class="choice">
+            <label><input type="radio" name="myPick" value="samsung"> 삼성 승</label>
+            <label><input type="radio" name="myPick" value="kia"> KIA 승</label>
+            <label><input type="radio" name="myPick" value="" checked> 예측 안 함</label>
+          </div>
+          <div class="score-row">
+            <span>예상 스코어</span>
+            <input name="mySamsung" type="number" min="0" max="99" aria-label="삼성 예상 득점" placeholder="삼성">
+            <span>:</span>
+            <input name="myKia" type="number" min="0" max="99" aria-label="KIA 예상 득점" placeholder="KIA">
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>실제 결과 <span class="muted">(경기 전이면 비워두세요)</span></legend>
+          <div class="score-row">
+            <span class="t-samsung">삼성</span>
+            <input name="scoreSamsung" type="number" min="0" max="99" aria-label="삼성 득점">
+            <span>:</span>
+            <input name="scoreKia" type="number" min="0" max="99" aria-label="KIA 득점">
+            <span class="t-kia">KIA</span>
+          </div>
+        </fieldset>
+
+        <p class="muted" id="officialNote" hidden>공식 기록으로 채워진 칸은 잠겨 있습니다. 내 예측과 메모만 바꿀 수 있어요.</p>
+
+        <label class="block">메모<textarea name="memo" rows="2" maxlength="300" placeholder="승부처, 부상, 라인업 등"></textarea></label>
+
+        <p class="error" id="formError" role="alert"></p>
+        <div class="actions">
+          <button type="submit" class="primary" id="submitBtn">저장</button>
+          <button type="button" id="cancelEdit" hidden>수정 취소</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>경기 기록</h2>
+      <div id="games"></div>
+    </section>
+
+    <section class="card">
+      <h2>예측 성적</h2>
+      <div id="stats"></div>
+    </section>
+
+    <section class="card">
+      <h2>설정 · 데이터</h2>
+      <div class="grid">
+        <label>시리즈 방식
+          <select id="winsNeeded">
+            <option value="2">3전 2선승</option>
+            <option value="3">5전 3선승</option>
+            <option value="4">7전 4선승</option>
+          </select>
+        </label>
+        <label>상위 시드 (1·2차전 홈)
+          <select id="topSeed">
+            <option value="samsung">삼성</option>
+            <option value="kia">KIA</option>
+          </select>
+        </label>
+      </div>
+      <p class="muted" id="settingsNote" hidden>시리즈 방식과 상위 시드는 공식 기록(data/games.js)을 따릅니다.</p>
+      <p class="muted">공식 일정·선발·결과는 data/games.js 에서 매일 아침 갱신됩니다. 내 예측과 메모는 이 브라우저에만 저장되니, 다른 기기로 옮기거나 백업하려면 내보내기를 쓰세요.</p>
+      <div class="actions">
+        <button type="button" id="exportBtn">JSON 내보내기</button>
+        <button type="button" id="importBtn">JSON 가져오기</button>
+        <input type="file" id="importFile" accept="application/json,.json" hidden>
+        <button type="button" class="danger" id="resetBtn">전체 초기화</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="muted">예측은 입력한 기록만으로 계산한 참고용 수치입니다.</footer>
+
+  <script src="data/games.js"></script>
+  <script src="predict.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
