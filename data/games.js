@@ -3,7 +3,7 @@
 // home/팀 값: "samsung" | "kia", score: 경기 전이면 null.
 // myPick/myScore: 사용자의 예측 (예약 작업은 건드리지 않음). 없으면 "" / null.
 window.PLAYOFF_DATA = {
-  "updatedAt": "2026-10-29",
+  "updatedAt": "2026-10-30",
   "settings": { "winsNeeded": 3, "topSeed": "samsung" },
   "games": [
     {
@@ -34,6 +34,17 @@ window.PLAYOFF_DATA = {
       "home": "kia",
       "spSamsung": "최원태",
       "spKia": "시라카와",
+      "score": { "samsung": 6, "kia": 4 },
+      "note": "광주 18:30",
+      "myPick": "",
+      "myScore": null
+    },
+    {
+      "no": 4,
+      "date": "2026-10-30",
+      "home": "kia",
+      "spSamsung": "",
+      "spKia": "",
       "score": null,
       "note": "광주 18:30",
       "myPick": "",
